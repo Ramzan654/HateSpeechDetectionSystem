@@ -14,3 +14,21 @@ Key components include:
 💾 Dataset: YouTube comments dataset annotated for religious hate.
 
 The system is modular, extendable, and ideal for research or production-level hate speech detection tasks.
+### 🤖 Model
+The trained model is available on Hugging Face:  
+[Hate Speech Detection Model](https://huggingface.co/Ramzan654/Religious_Hate_Speech_XLMR)
+
+## 👥 Team Members
+
+| Name | Role | University / Department |
+|------|------|--------------------------|
+| Muhammad Ramzan | Project Leader & Full Stack Developer / Model Trainer / Researcher | University of Sargodha - BS Software Engineering |
+| [Hajira Ashraf] | Frontend Developer / Researcher / UI&UX /Project Presentator| University of Sargodha - BS Software Engineering |
+| [Muhammad Ali Husnain] | Frontend Developer / Dataset Collecter / Preprocessing / Researcher | University of Sargodha - BS Software Engineering |
+
+---
+
+### 🤝 Acknowledgment
+This project is developed as part of our academic research on *Religious Hate Speech Detection from YouTube Comments* using transformer-based models.
+
+
