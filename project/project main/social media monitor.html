@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Monitoring | Hate Speech Detection</title>
+    <link rel="stylesheet" href="social media monitor.css">
+    <link href="style.css">
+    <script type="module" src="shared_auth.js"></script>
+    <script type="module" src="indexScript.js"></script>
+    <script type="module" src="userAuthentication.js"></script>
+    
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="text analysis.html">Text Analysis</a></li>
+            </ul>
+            <button id="registerBtn" class="register-btn">Register</button>
+        </nav>
+    </header>
+
+    <!-- Add this new Profile Popup section after the login popup -->
+<div id="profilePopup" class="profile-popup-container">
+    <div class="profile-popup-content">
+        <span id="closeProfilePopup" class="close-btn">&times;</span>
+        <div class="profile-section">
+            <h2>User Profile</h2>
+            <div class="profile-info">
+                <div class="profile-field">
+                    <label>Username</label>
+                    <p id="profileUsername">Loading...</p>
+                </div>
+                <div class="profile-field">
+                    <label>Email</label>
+                    <p id="profileEmail">Loading...</p>
+                </div>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update the login form labels to specify email instead of username -->
+<div id="loginPopup" class="popup-container">
+    <div class="popup-content" >
+        <span id="closePopup" class="close-btn">&times;</span>
+        <div class="login-signup">
+           <div class="left-section" >
+             <h2>Sign In</h2>
+             <label>Email</label>
+             <input type="email" id="loginEmail" placeholder="Enter email">
+             <label>Password</label>
+             <input type="password" id="loginPassword" placeholder="Enter password">
+             <button id="signInBtn" style="width: 425px;">Sign In</button>
+           <div>
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </div>
+        </div>  
+            <div class="right-section">
+             <h2>Welcome to Log In</h2>
+             <p>Don't have an account?</p>
+             <button id="signUpBtn">Sign Up</button>
+           </div>
+           <!-- Hidden Sign Up Form -->
+        <div class="signup-section" id="signupSection" style="display:none;">
+            <h2>Create Account</h2>
+            <label>Email</label>
+            <input type="email" id="signupEmail" placeholder="Enter your email">
+            <label>Username</label>
+            <input type="text" id="signupUsername" placeholder="Choose a username">
+            <label>Password</label>
+            <input type="password" id="signupPassword" placeholder="Create password">
+            <button id="createAccountBtn" style="width: 860px;">Create Account</button>
+            <p>Already have an account? <a href="#" id="backToLogin">Sign In</a></p>
+        </div>
+       </div>
+   </div>
+</div>
+
+    <!-- Social Media Monitoring Section -->
+    <section class="social-media-section">
+        <h1>Social Media Monitoring</h1>
+        <p>Social media monitoring plays a critical role in understanding public sentiment, identifying harmful content, and ensuring digital
+         platforms remain safe and inclusive. In this project, social media monitoring focuses on analyzing YouTube comments to detect instances 
+         of hate speech. By leveraging Natural Language Processing (NLP) techniques and a trained transformer-based classification model, 
+         the system continuously evaluates user-generated content. This enables stakeholders such as researchers, moderators, or organizations
+          to gain insights into how users interact with video content and how frequently hate-related expressions appear. The ability to track 
+        and analyze such behavior in near real-time helps in addressing digital abuse, promoting respectful dialogue, and shaping better community
+         guidelines on social platforms.</p>
+        
+        <div class="features-container">
+            <div class="feature-card">
+                <h3>Real-time Analysis</h3>
+                <p>Our system processes social media content as it's posted, providing immediate alerts when potential hate speech is detected, allowing for timely intervention.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Single-Platfrom Coverage</h3>
+                <p>Our project focuses on single-platform coverage by exclusively monitoring and analyzing hate speech within YouTube comments.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Contextual Understanding</h3>
+                <p>Contextual understanding enables the model to interpret the meaning of comments based on surrounding words,
+                     improving the accuracy of hate speech detection.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Trend Analysis</h3>
+                <p>Trend analysis in our project helps detect evolving patterns of hate speech over time, enabling proactive monitoring of harmful
+                     content on YouTube.
+                </p>
+            </div>
+            
+           
+    </section>
+
+    <!-- footer section -->
+   
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3  style="color: white;">About Company</h3>
+                <p style="color: #fff; line-height: 1.6;">
+                    We are dedicated to detecting and preventing religious-based hate speech using cutting-edge AI technology, making online spaces safer for everyone.
+                </p>
+            </div>
+            
+           
+            
+            <div class="footer-section">
+                <h3  style="color: white;">Our Services</h3>
+                <ul class="footer-links">
+                    <li><a href="text analysis.html">Text Analysis</a></li>
+                    <li><a href="social media monitor.html">Social Media Monitoring</a></li>
+                    <li><a href="custom solution.html">Custom Solutions</a></li>
+                    <!--<li><a href="api-integration.html">API Integration</a></li>-->
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 style="color: white;" >Contact Us</h3>
+                <div class="contact-info">
+                    <p style="color: white;"><i class="fa fa-map-marker"></i> 123 AI Street, Tech City</p>
+                    <p  style="color: white;"><i class="fa fa-phone"></i> +1 234 567 8900</p>
+                    <p  style="color: white;"><i class="fa fa-envelope"></i> info@hatespeechdetection.com</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p style="color: white;">&copy; 2023 Hate Speech Detection System. All rights reserved.</p>
+        </div>
+            </footer>
+
+</body>
+</html>

@@ -1,0 +1,519 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-color: #F7F7F7;
+    padding-top: 70px;
+}
+
+header {
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgb(0, 0, 0, 0.1);
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-color: #030202;
+    padding: 10px 50px;
+    box-shadow: 0px 4px 10px rgba(183, 13, 13, 0.1);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: rgb(4, 189, 72);
+    font-size: 16px;
+}
+
+.register-btn {
+    width: auto;
+    padding: 8px 20px;
+    border-radius: 10px;
+    background: #E91E63;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background: #ff3d5a;
+}
+
+
+/* cards section  */
+/* Additional styles specific to the social media monitoring page */
+.social-media-section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #333;
+}
+
+.social-media-section h1 {
+    font-size: 36px;
+    color: #1a472a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.social-media-section p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.features-container {
+ width: 900px;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 20px;
+  justify-content: center; /* Center the cards */
+  margin: 0 auto; /* Optional: center the whole container in the page */
+}
+
+.feature-card {
+flex: 1 1 calc(33.33% - 20px);
+background: white;
+border-radius: 10px;
+padding: 20px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+transition: transform 0.3s ease;
+}
+
+
+
+
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card h3 {
+    color: #1a472a;
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.feature-card p {
+    text-align: left;
+    font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .feature-card {
+        width: 100%;
+    }
+}
+/* end */
+
+/* footer section  */
+.footer {
+    background-color: #222;
+    padding: 40px 20px;
+    color: white;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 280px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* ✅ This centers all content inside */
+    text-align: center;   /* ✅ This centers text below headings */
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin: 10px 0;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+
+/* Login/Signup Popup Styles */
+
+.popup-content {
+    width: 800px;
+    min-height: 500px;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    color: #E91E63;
+    transform: scale(1.1);
+    background: #f5f5f5;
+}
+
+.login-signup {
+    display: flex;
+    height: 100%;
+    position: relative;
+}
+
+.left-section, .right-section, .signup-section {
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.left-section {
+    width: 50%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-section {
+    width: 50%;
+    background: linear-gradient(135deg, #E91E63, #9C27B0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.right-section h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.right-section p {
+    margin-bottom: 30px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.signup-section {
+    width: 100%;
+    background: white;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.signup-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.left-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.left-section label, .signup-section label {
+    color: #555;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.left-section input, .signup-section input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.left-section input:focus, .signup-section input:focus {
+    border-color: #E91E63;
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+    outline: none;
+    background: white;
+}
+
+#signInBtn, #createAccountBtn {
+    background: #E91E63;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#signInBtn:hover, #createAccountBtn:hover {
+    background: #C2185B;
+    transform: translateY(-2px);
+}
+
+#signUpBtn {
+    background: white;
+    color: #E91E63;
+    border: 2px solid white;
+    padding: 10px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#signUpBtn:hover {
+    background: transparent;
+    color: white;
+}
+
+#forgotPassword {
+    color: #E91E63;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-top: 15px;
+}
+
+#forgotPassword:hover {
+    text-decoration: underline;
+}
+
+#backToLogin {
+    color: #E91E63;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#backToLogin:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .popup-content {
+        position: relative;
+        margin: 20px;
+        overflow: visible;
+    }
+    
+    .login-signup {
+        flex-direction: column;
+    }
+    
+    .left-section, .right-section, .signup-section {
+        width: 100%;
+    }
+    
+    .right-section {
+        padding: 20px;
+    }
+}
+
+/* Animation for form switching */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.signup-section, .left-section {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Popup container styling */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+/* Profile Button Styles */
+.register-btn.profile-active {
+    background-color: #1a4ea4;
+}
+
+/* Profile Popup Styles */
+.profile-section {
+    width: 90%;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.profile-field label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.profile-field p {
+    margin: 0;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.logout-btn {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #e60000;
+}
+
+/* Profile popup container */
+.profile-popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-popup-content {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 40%;
+    max-width: 900px;
+}
+
+/* Register button styling */
+.register-btn {
+    width: auto;
+    padding: 8px 20px;
+    border-radius: 10px;
+    background: #E91E63;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background: #ff3d5a;
+}
+/* end footer */
+
+

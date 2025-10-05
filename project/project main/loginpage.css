@@ -1,0 +1,174 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #000;
+    color: white;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+}
+
+.register-btn {
+    background: #ff3b62;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero-text {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 30px;
+    color: white;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    max-width: 900px;
+    margin: 40px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Left Side - Sign In Form */
+.login-form {
+    width: 60%;
+    background: white;
+    color: black;
+    padding: 50px;
+}
+
+.login-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.btn {
+    width: 100%;
+    background: #ff3b62;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #e02e54;
+}
+
+/* Remember Me & Forgot Password */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.options input {
+    margin-right: 5px;
+}
+
+/* Right Side - Sign Up Prompt */
+.signup-prompt {
+    width: 40%;
+    background: #ff3b62;
+    color: white;
+    text-align: center;
+    padding: 50px;
+}
+
+.signup-prompt h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.signup-prompt p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.btn-light {
+    display: inline-block;
+    background: white;
+    color: #ff3b62;
+    padding: 12px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.btn-light:hover {
+    background: #f0f0f0;
+}
+
+/* Footer */
+.footer-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: white;
+}

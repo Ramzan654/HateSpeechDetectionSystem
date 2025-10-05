@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Religious-based Hate Speech Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1a472a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Card Section */
+        .card-section {
+            margin-bottom: 3rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-right: 1rem;
+        }
+
+        .green-icon {
+            background-color: #1a472a;
+            color: white;
+        }
+
+        .blue-icon {
+            background-color: #17a2b8;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            color: #666;
+            text-decoration: none;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            display: none;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #1a472a;
+        }
+
+        .blog-content {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #1a472a;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content h3 {
+            color: #1a472a;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1rem;
+        }
+
+        .blog-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .back-button {
+            background-color: #1a472a;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #143d20;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #1a472a;
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Religious-based Hate Speech Detection</h1>
+            <p>A comprehensive project on detecting and analyzing religious hate speech in online platforms</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Cards Section -->
+        <section class="card-section">
+            <h2>Project Components</h2>
+            <div class="card-grid">
+                <!-- Card 1 -->
+                <div class="card" data-blog="dataset-collection">
+                    <div class="card-header">
+                        <div class="card-icon green-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="card-title">Dataset Collection</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Collection and preparation of religious text datasets from various sources for training our hate speech detection models.</p>
+                    </div>
+                    <a href="#" class="card-link">Discover More ›</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card" data-blog="text-classification">
+                    <div class="card-header">
+                        <div class="card-icon green-icon">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="card-title">Text Classification</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Advanced algorithms for classifying religious text and identifying potential hate speech based on contextual analysis.</p>
+                    </div>
+                    <a href="#" class="card-link">Discover More ›</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card" data-blog="sentiment-analysis">
+                    <div class="card-header">
+                        <div class="card-icon green-icon">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">Sentiment Analysis</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Evaluating the emotional undertones and sentiment patterns in religious discussions to identify potentially harmful content.</p>
+                    </div>
+                    <a href="#" class="card-link">Discover More ›</a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card" data-blog="nlp-techniques">
+                    <div class="card-header">
+                        <div class="card-icon blue-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="card-title">NLP Techniques</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Implementation of state-of-the-art Natural Language Processing techniques for accurate hate speech detection.</p>
+                    </div>
+                    <a href="#" class="card-link">Discover More ›</a>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card" data-blog="model-training">
+                    <div class="card-header">
+                        <div class="card-icon blue-icon">
+                            <i class="fa-solid fa-code-branch"></i>
+                        </div>
+                        <h3 class="card-title">Model Training</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Training and optimization of machine learning models specifically designed for religious content analysis.</p>
+                    </div>
+                    <a href="#" class="card-link">Discover More ›</a>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card" data-blog="real-time-monitoring">
+                    <div class="card-header">
+                        <div class="card-icon blue-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <h3 class="card-title">Real-time Monitoring</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>Continuous monitoring and analysis system for detecting religious hate speech across various online platforms.</p>
+                    </div>
+                    <a href="#" class="card-link">Discover More ›</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Sections - One for each card -->
+        <section class="blog-section" id="dataset-collection-section">
+            <h2 class="blog-title">Dataset Collection</h2>
+            <div class="blog-content">
+                <h3>Dataset Collection for Religious Hate Speech Detection</h3>
+                <p>Our dataset collection process involves gathering text data from various online platforms including social media, forums, and news comments sections. We've created a diverse corpus that includes content related to multiple religions including Christianity, Islam, Judaism, Hinduism, and Buddhism.</p>
+                <p>For ethical considerations, all data is anonymized and stripped of personally identifiable information. We've implemented a rigorous annotation process where multiple annotators review each piece of content to identify and categorize different forms of religious hate speech.</p>
+                <p>The dataset is balanced to ensure representation across different religious groups and includes both explicit and implicit forms of hate speech. This comprehensive approach ensures our models can detect subtle forms of religious discrimination and bias.</p>
+            </div>
+            <button class="back-button">Back to Components</button>
+        </section>
+
+        <section class="blog-section" id="text-classification-section">
+            <h2 class="blog-title">Text Classification</h2>
+            <div class="blog-content">
+                <h3>Advanced Text Classification Methods</h3>
+                <p>Our text classification system uses a multi-layered approach to identify religious hate speech with high accuracy. We employ transformer-based models like BERT and RoBERTa that have been fine-tuned specifically on religious content to understand contextual nuances.</p>
+                <p>The classification system categorizes content into several tiers including: explicit hate speech, implicit biases, microaggressions, and neutral religious discussion. This granular approach allows platform moderators to apply appropriate responses based on the severity of the content.</p>
+                <p>To address the challenges of linguistic variations, we've incorporated dialect-specific and multilingual capabilities that can detect hate speech across different languages and cultural contexts, making our system globally applicable.</p>
+            </div>
+            <button class="back-button">Back to Components</button>
+        </section>
+
+        <section class="blog-section" id="sentiment-analysis-section">
+            <h2 class="blog-title">Sentiment Analysis</h2>
+            <div class="blog-content">
+                <h3>Religious Sentiment Analysis Framework</h3>
+                <p>Our sentiment analysis framework goes beyond traditional positive-negative classification to capture the complex emotional undertones present in religious discussions. We've developed a specialized emotion detection system that identifies anger, fear, disgust, and other emotions that often accompany hate speech.</p>
+                <p>By analyzing emotional patterns across large volumes of content, we can identify emerging trends of religious intolerance before they escalate. This proactive approach enables early intervention in online communities where tensions may be rising.</p>
+                <p>The sentiment analysis component also accounts for cultural and contextual factors that influence how religious sentiments are expressed across different communities, enhancing the accuracy of our hate speech detection capabilities.</p>
+            </div>
+            <button class="back-button">Back to Components</button>
+        </section>
+
+        <section class="blog-section" id="nlp-techniques-section">
+            <h2 class="blog-title">NLP Techniques</h2>
+            <div class="blog-content">
+                <h3>State-of-the-Art NLP for Religious Content</h3>
+                <p>Our project leverages cutting-edge Natural Language Processing techniques specifically optimized for religious content analysis. We've implemented advanced named entity recognition systems that can identify religious terms, figures, and concepts across multiple faiths.</p>
+                <p>Contextual embeddings have been fine-tuned on religious texts to better understand the semantic meaning behind religious terminology when used in different contexts. This helps distinguish between legitimate religious discussion and content that weaponizes religious concepts for hateful purposes.</p>
+                <p>We've also developed specialized tokenization methods that properly handle religious terminology, sacred text references, and faith-specific expressions that might be misinterpreted by general-purpose NLP systems.</p>
+            </div>
+            <button class="back-button">Back to Components</button>
+        </section>
+
+        <section class="blog-section" id="model-training-section">
+            <h2 class="blog-title">Model Training</h2>
+            <div class="blog-content">
+                <h3>Training Models for Religious Content Understanding</h3>
+                <p>Our model training process involves several stages designed to create AI systems that deeply understand religious contexts. Initial pre-training occurs on a diverse corpus of religious texts from multiple faiths to build foundational knowledge of terminology and concepts.</p>
+                <p>The fine-tuning phase incorporates annotated examples of both hateful and non-hateful religious content, teaching the models to distinguish between legitimate religious expression and harmful content. We employ adversarial training techniques to make our models robust against attempts to disguise hate speech.</p>
+                <p>Continuous evaluation against evolving test sets ensures our models remain effective as language patterns change. Regular retraining incorporates new examples of religious hate speech tactics to keep pace with emerging methods of evading detection.</p>
+            </div>
+            <button class="back-button">Back to Components</button>
+        </section>
+
+        <section class="blog-section" id="real-time-monitoring-section">
+            <h2 class="blog-title">Real-time Monitoring</h2>
+            <div class="blog-content">
+                <h3>Continuous Monitoring System for Religious Hate Speech</h3>
+                <p>Our real-time monitoring system operates across multiple online platforms to detect religious hate speech as it emerges. The system processes millions of text entries daily, prioritizing content for human review based on confidence scores and potential impact.</p>
+                <p>The monitoring dashboard provides visualization tools that identify trends in religious hate speech, allowing researchers and platform moderators to understand patterns across different communities, geographic regions, and time periods.</p>
+                <p>Alert systems can be configured to notify moderators when significant spikes in religious hate speech occur, often corresponding with real-world events. This enables timely intervention to prevent the escalation of online religious tensions into broader conflicts.</p>
+            </div>
+            <button class="back-button">Back to Components</button>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Religious-based Hate Speech Detection Project</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            const blogSections = document.querySelectorAll('.blog-section');
+            const backButtons = document.querySelectorAll('.back-button');
+            const cardSection = document.querySelector('.card-section');
+            
+            // Add click event to each card
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const blogType = this.getAttribute('data-blog');
+                    const targetSection = document.getElementById(`${blogType}-section`);
+                    
+                    // Hide card section and show specific blog section
+                    cardSection.style.display = 'none';
+                    
+                    // Hide all blog sections first
+                    blogSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show only the target blog section
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        // Scroll to the blog section
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Add click event to all back buttons
+            backButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Hide all blog sections
+                    blogSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show card section
+                    cardSection.style.display = 'block';
+                    
+                    // Scroll back to card section
+                    cardSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Prevent default behavior for the "Discover More" links
+            document.querySelectorAll('.card-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

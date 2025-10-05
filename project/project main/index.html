@@ -1,0 +1,577 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Speech Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="userprofile.css">
+    <script src="indexCardsScript.js"></script>
+    <script type="module" src="indexScript.js"></script>
+        
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="text analysis.html">Text Analysis</a></li>
+            </ul>
+            <button id="registerBtn" class="register-btn">Register</button>
+        </nav>
+    </header>
+
+<!-- Add this new Profile Popup section after the login popup -->
+<div id="profilePopup" class="profile-popup-container">
+    <div class="profile-popup-content">
+        <span id="closeProfilePopup" class="close-btn">&times;</span>
+        <div class="profile-section">
+            <h2>User Profile</h2>
+            <div class="profile-info">
+                <div class="profile-field">
+                    <label>Username</label>
+                    <p id="profileUsername">Loading...</p>
+                </div>
+                <div class="profile-field">
+                    <label>Email</label>
+                    <p id="profileEmail">Loading...</p>
+                </div>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update the login form labels to specify email instead of username -->
+<div id="loginPopup" class="popup-container">
+    <div class="popup-content" >
+        <span id="closePopup" class="close-btn">&times;</span>
+        <div class="login-signup">
+           <div class="left-section" >
+             <h2>Sign In</h2>
+             <label>Email</label>
+             <input type="email" id="loginEmail" placeholder="Enter email">
+             <label>Password</label>
+             <input type="password" id="loginPassword" placeholder="Enter password">
+             <button id="signInBtn" style="width: 425px;">Sign In</button>
+           <div>
+                <a href="#" id="forgotPassword">Forgot Password?</a>
+            </div>
+        </div>  
+            <div class="right-section">
+             <h2>Welcome to Log In</h2>
+             <p>Don't have an account?</p>
+             <button id="signUpBtn">Sign Up</button>
+           </div>
+           <!-- Hidden Sign Up Form -->
+        <div class="signup-section" id="signupSection" style="display:none;">
+            <h2>Create Account</h2>
+            <label>Email</label>
+            <input type="email" id="signupEmail" placeholder="Enter your email">
+            <label>Username</label>
+            <input type="text" id="signupUsername" placeholder="Choose a username">
+            <label>Password</label>
+            <input type="password" id="signupPassword" placeholder="Create password">
+            <button id="createAccountBtn" style="width: 860px;">Create Account</button>
+            <p>Already have an account? <a href="#" id="backToLogin">Sign In</a></p>
+        </div>
+       </div>
+   </div>
+</div>
+   
+
+  <!-- Initial Screen -->
+  <div class="inputcontainer" id="initial-screen">
+    <h1>YouTube Comment Analyzer</h1>
+    
+    <div class="input-group">
+        <label for="youtube-link">YouTube URL</label>
+        <input type="text" id="youtube-link" placeholder="Enter YouTube video URL...">
+        <small>Example: https://www.youtube.com/watch?v=videoID</small>
+    </div>
+    
+    <div class="input-group">
+        <label for="model">Model</label>
+        <select id="model">
+            <option value="xlm-roberta" selected>XLM-RoBERTa</option>
+            
+        </select>
+    </div>
+    
+    <div class="button-group">
+        <button class="clear-btn" id="clear-btn">Clear</button>
+        <button class="analyze-btn" id="analyze-btn">Analyze</button>
+    </div>
+</div>
+
+<!-- Processing Screen -->
+<div class="container processing-screen" id="processing-screen">
+    <h1>Analyzing YouTube Comments</h1>
+    <p>Please wait while we fetch and process the comments...</p>
+    
+    <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-text" id="progress-text">0%</div>
+    </div>
+</div>
+
+<!-- Results Screen -->
+<div class="container results-screen" id="results-screen">
+    <h1>Analysis Results</h1>
+    
+    <div class="result-box" style="background-color: #f8e8ff;">
+        <h2>Comment Analysis</h2>
+        <p>Analysis completed successfully</p>
+        <div class="hate-percentage" id="hate-percentage">Hate: 0%, Non-Hate: 0%</div>
+    </div>
+    
+    <div class="button-group">
+        <button class="clear-btn" id="back-to-home">New Analysis</button>
+        <button class="report-btn" id="report-btn">Generate Report</button>
+    </div>
+</div>
+
+<!-- Report Screen -->
+<div class="container report-screen" id="report-screen">
+    <h1>Detailed Report</h1>
+    
+    <div class="pie-chart-container">
+        <div class="pie-chart" id="pie-chart">
+        </div>
+    </div>
+    
+    <div class="pie-legend">
+        <div class="legend-item">
+            <div class="legend-color hate-color"></div>
+            <span style="color: black;">Hate</span>
+            <span id="hate-legend-percentage" style="color: black;">0%</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color non-hate-color"></div>
+            <span style="color: black;">Non-Hate</span>
+            <span id="non-hate-legend-percentage" style="color: black;">0%</span>
+        </div>
+    </div>
+    
+    <div class="channel-info" id="channel-info">
+        <h3>Channel Information</h3>
+        <p id="channel-name">Channel: Loading...</p>
+    </div>
+    
+    <div class="comment-count" id="comment-count">
+        Total Comments Analyzed: 0
+    </div>
+
+    <!-- New: Comments Table -->
+    <div class="comments-table-container">
+        <h2 style="color: black; text-align: center; margin-bottom: 20px;">Analyzed Comments</h2>
+        <table id="analyzed-comments-table">
+            <thead>
+                <tr>
+                    <th>Comment</th>
+                    <th>Label</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Comments will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    
+    <button class="back-btn" id="back-to-results">Back to Results</button>
+</div>
+</section>
+<!-- end -->
+
+<!-- Our Working Process -->
+<div id="WorkignProcess" style="width: 100%; height: 600px; padding-top: 100px; position: relative; background-image: url(pexels-canvy-mockups-56805-205316.jpg); background-size: cover; background-position: center;">
+    <!-- Overlay -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(10, 231, 102, 0.9), rgba(13, 80, 248, 0.9));"></div>
+
+    <!-- WORKING PROCESS Title -->
+    <div style="display: flex; justify-content: center; padding-top: 70px; position: relative; z-index: 2;">
+        <span style="padding: 11px 35px; background-color: rgba(255, 255, 255, 1); border-radius: 60px;">
+            <p style="color: #37AA67; font-size: 14px; font-weight: 600; margin: 0;">WORKING PROCESS</p>
+        </span> 
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 70px; gap: 40px; position: relative; z-index: 2;">
+    
+             <!-- Step 1 -->
+             <div style="  display: flex;  flex-direction: column;align-items: center; justify-content: center; text-align: center;  position: relative; background: rgba(255, 255, 255, 0.2);  padding: 20px;border-radius: 10px;  width: 150px;  height: 280px;">
+                <!-- Number Circle -->
+                <div style=" display: flex;  align-items: center;  justify-content: center;  width: 80px;  height: 80px;  background-color: #37AA67;  border-radius: 50%;  color: white;  font-size: 24px;  font-weight: bold;">
+                    <h4 style="margin: 0;">1</h4>
+                </div>
+            
+                <!-- Text -->
+                <h3 style="color: #FFFFFF; margin: 10px 0 5px 0;">Data Collection</h3>
+                <p style="color: #FFFFFF; margin: 0;">The system gathers YouTube comments using the YouTube API, focusing on religious content to detect hate speech.</p>
+            
+            </div>
+
+            <!-- Step 2 -->
+            <div style="  display: flex;  flex-direction: column;align-items: center; justify-content: center; text-align: center;  position: relative; background: rgba(255, 255, 255, 0.2);  padding: 20px;border-radius: 10px;  width: 150px;  height: 280px;">
+                <!-- Number Circle -->
+                <div style=" display: flex;  align-items: center;  justify-content: center;  width: 80px;  height: 80px;  background-color: #37AA67;  border-radius: 50%;  color: white;  font-size: 24px;  font-weight: bold;">
+                    <h4 style="margin: 0;">2</h4>
+                </div>
+            
+                <!-- Text -->
+                <h3 style="color: #FFFFFF; margin: 10px 0 5px 0;">Preprocessing</h3>
+                <p style="color: #FFFFFF; margin: 0;">Tokenization, stopword removal,remove emojies,urls,numbers and stemming are applied to improve data quality</p>
+            
+            </div>
+
+            <!-- Step 3 -->
+            <div style="  display: flex;  flex-direction: column;align-items: center; justify-content: center; text-align: center;  position: relative; background: rgba(255, 255, 255, 0.2);  padding: 20px;border-radius: 10px;  width: 150px;  height: 280px;">
+                <!-- Number Circle -->
+                <div style=" display: flex;  align-items: center;  justify-content: center;  width: 80px;  height: 80px;  background-color: #37AA67;  border-radius: 50%;  color: white;  font-size: 24px;  font-weight: bold;">
+                    <h4 style="margin: 0;">3</h4>
+                </div>
+            
+                <!-- Text -->
+                <h3 style="color: #FFFFFF; margin: 10px 0 5px 0;">Total Comments</h3>
+                <p style="color: #FFFFFF; margin: 0;">Maximum 1000 comments were use for each prediction and this number also depend on the video how much total comments this has</p>
+            
+            </div>
+
+        <!-- Step 4 -->
+        <div style="  display: flex;  flex-direction: column;align-items: center; justify-content: center; text-align: center;  position: relative; background: rgba(255, 255, 255, 0.2);  padding: 20px;border-radius: 10px;  width: 150px;  height: 280px;">
+    <!-- Number Circle -->
+    <div style=" display: flex;  align-items: center;  justify-content: center;  width: 80px;  height: 80px;  background-color: #37AA67;  border-radius: 50%;  color: white;  font-size: 24px;  font-weight: bold;">
+        <h4 style="margin: 0;">4</h4>
+    </div>
+
+    <!-- Text -->
+    <h3 style="color: #FFFFFF; margin: 10px 0 5px 0;">Model</h3>
+    <p style="color: #FFFFFF; margin: 0;">Deep learning model (XLM-RoBERTa) categorize comments into hate or non-hate and having 91% accuracy </p>
+
+</div>
+
+    </div>
+</div>
+
+<!-- end how our project work -->
+ 
+
+ 
+<div class="cardcontainer">
+     
+    <!-- Cards Section -->
+    <section class="card-section">
+        <h2>Project Components</h2>
+        <div class="card-grid">
+        <!-- Card 1 -->
+        <div class="card" data-blog="dataset-collection">
+            <div class="card-header">
+                <div class="card-icon green-icon">
+                    <i class="fa-solid fa-database"></i>
+                </div>
+                <h3 class="card-title">Dataset Collection</h3>
+            </div>
+            <div class="card-content">
+                <p>Collection and preparation of religious text datasets from various sources for training our hate speech detection models.</p>
+            </div>
+            <a href="#" class="card-link">Discover More ›</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card" data-blog="text-classification">
+            <div class="card-header">
+                <div class="card-icon green-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <h3 class="card-title">Text Classification</h3>
+            </div>
+            <div class="card-content">
+                <p>Advanced algorithms for classifying religious text and identifying potential hate speech based on contextual analysis.</p>
+            </div>
+            <a href="#" class="card-link">Discover More ›</a>
+        </div>
+
+         <!-- Card 3 -->
+         <div class="card" data-blog="sentiment-analysis">
+            <div class="card-header">
+                <div class="card-icon green-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="card-title">Sentiment Analysis</h3>
+            </div>
+            <div class="card-content">
+                <p>Evaluating the emotional undertones and sentiment patterns in religious discussions to identify potentially harmful content.</p>
+            </div>
+            <a href="#" class="card-link">Discover More ›</a>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card" data-blog="nlp-techniques">
+            <div class="card-header">
+                <div class="card-icon blue-icon">
+                    <i class="fa-solid fa-microchip"></i>
+                </div>
+                <h3 class="card-title">NLP Techniques</h3>
+            </div>
+            <div class="card-content">
+                <p>Implementation of state-of-the-art Natural Language Processing techniques for accurate hate speech detection.</p>
+            </div>
+            <a href="#" class="card-link">Discover More ›</a>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card" data-blog="model-training">
+            <div class="card-header">
+                <div class="card-icon blue-icon">
+                    <i class="fa-solid fa-code-branch"></i>
+                </div>
+                <h3 class="card-title">Model Training</h3>
+            </div>
+            <div class="card-content">
+                <p>Training and optimization of machine learning models specifically designed for religious content analysis.</p>
+            </div>
+            <a href="#" class="card-link">Discover More ›</a>
+        </div>
+
+       <!-- Card 6 -->
+       <div class="card" data-blog="real-time-monitoring">
+        <div class="card-header">
+            <div class="card-icon blue-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <h3 class="card-title">Real-time Monitoring</h3>
+        </div>
+        <div class="card-content">
+            <p>Continuous monitoring and analysis system for detecting religious hate speech across various online platforms.</p>
+        </div>
+        <a href="#" class="card-link">Discover More ›</a>
+    </div>
+</div>
+</section>
+    </div>
+</div>
+
+
+ <section class="blog-section" id="dataset-collection-section">
+    <h2 class="blog-title">Dataset Collection</h2>
+    <div class="blog-content">
+        <h3>Dataset Collection for Religious Hate Speech Detection</h3>
+        <p>we gathered YouTube video data using the YouTube Data API v3. This included collecting public comments from videos related to different religions, 
+        ensuring a wide range of perspectives and linguistic styles. The dataset was curated to include diverse content in terms of sentiment and 
+        language usage, helping to build a robust model for hate speech detection. Special care was taken to balance the dataset across categories
+         (e.g., hate and non-hate) to improve classification performance and reduce bias.</p>
+    <button class="back-button">Back to Components</button>
+</section>
+
+<section class="blog-section" id="text-classification-section">
+    <h2 class="blog-title">Text Classification</h2>
+    <div class="blog-content">
+        <h3>Advanced Text Classification Methods</h3>
+        <p>Text classification is a fundamental task in natural language processing (NLP) that involves categorizing textual data into predefined
+         labels or classes. In this project, text classification was used to distinguish between hate and non-hate speech in YouTube comments.
+        Using advanced models like XLM-RoBERTa, the system was trained to understand contextual meanings, detect offensive language, and make
+         accurate predictions. Preprocessed text data was tokenized and fed into the model, which learned to recognize patterns and linguistic
+         features associated with hate speech. This classification enables effective monitoring of online content and contributes to creating 
+         safer digital environments.</p>
+    <button class="back-button">Back to Components</button>
+</section>
+
+<section class="blog-section" id="sentiment-analysis-section">
+    <h2 class="blog-title">Sentiment Analysis</h2>
+    <div class="blog-content">
+        <h3>Religious Sentiment Analysis Framework</h3>
+        <p>Sentiment analysis is a natural language processing (NLP) technique used to determine the emotional tone behind textual content.
+         It helps in identifying whether a piece of text expresses a positive, negative, or neutral sentiment. In this project, sentiment
+         analysis plays a crucial role in understanding user opinions and emotions within YouTube comments. By analyzing the sentiment of
+          each comment, the system can detect underlying hate speech or supportive content, providing insights into public attitudes and 
+          engagement. This enables the classification model to make more informed predictions and enhances the overall effectiveness of
+           hate speech detection.
+        </p>
+    </div>
+    <button class="back-button">Back to Components</button>
+</section>
+
+<section class="blog-section" id="nlp-techniques-section">
+    <h2 class="blog-title">NLP Techniques</h2>
+    <div class="blog-content">
+        <h3>State-of-the-Art NLP for Religious Content</h3>
+        <p>Natural Language Processing (NLP) techniques are at the core of this project’s functionality. To accurately detect hate speech and 
+        sentiment in YouTube comments, several key NLP methods are employed. These include text preprocessing
+         (such as lowercasing, removing links, special characters, and stopwords), tokenization using transformer-based models like XLM-RoBERTa,
+         and vectorization to convert raw text into meaningful numerical representations. The project also leverages deep learning-based classification
+          to understand the context and semantics of the comments. These NLP techniques enable the system to handle noisy, informal, 
+          and diverse language present in user-generated content, making the hate speech detection more precise and context-aware.</p>
+    <button class="back-button">Back to Components</button>
+</section>
+
+<section class="blog-section" id="model-training-section">
+    <h2 class="blog-title">Model Training</h2>
+    <div class="blog-content">
+        <h3>Training Models for Religious Content Understanding</h3>
+        <p>Model training in this project plays a crucial role in enabling accurate hate speech detection. The dataset, comprising YouTube comments 
+        labeled as hate or non-hate, is first preprocessed and tokenized using the XLM-RoBERTa tokenizer. 
+        These tokenized inputs are then used to fine-tune the pre-trained XLM-RoBERTa model for sequence classification. During training, 
+        the model learns to identify subtle linguistic cues and contextual patterns associated with hate speech by adjusting its internal weights
+         based on the labeled data. Techniques such as early stopping, learning rate scheduling, and evaluation metrics (like accuracy and F1-score) 
+         are employed to optimize performance and prevent overfitting. This rigorous training process ensures that the model can generalize well on 
+         unseen comments, providing reliable predictions during real-time analysis.</p>
+    <button class="back-button">Back to Components</button>
+</section>
+
+<section class="blog-section" id="real-time-monitoring-section">
+    <h2 class="blog-title">Real-time Monitoring</h2>
+    <div class="blog-content">
+        <h3>Continuous Monitoring System for Religious Hate Speech</h3>
+        <p>Real-time monitoring in this project enables immediate detection and analysis of hate speech in YouTube video comments. By allowing users 
+        to input a YouTube video URL, the system fetches the latest comments using the YouTube API and processes them on the spot. 
+        The trained transformer model then analyzes these comments in real time, classifying them as hate or non-hate. 
+        The results—including hate speech percentages, total comments analyzed, and visualizations like pie charts—are instantly displayed to the user.
+        This real-time feedback mechanism not only enhances user experience but also provides timely insights, making it a valuable tool for content
+         moderation, social research, and proactive hate speech intervention.</p>
+    </div>
+    <button class="back-button">Back to Components</button>
+</section>
+</div>
+
+ <!-- Font Awesome for icons -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    
+
+
+<!-- end -->
+
+<!-- our providing services -->
+ 
+<div class="stats-container">
+    <div class="hexagon-bg"></div>
+    <div class="overlay"></div>
+    <div class="ourprovidingservicescontainer">
+        <div class="lab-title">Hate Speech Detection System</div>
+        <h1 class="main-heading" style="color: white;">We Provide Reliable & High Accuracy of Results</h1>
+        
+        <div class="stats-wrapper">
+            <div class="stat-item">
+                <img src="call-8602325.png" class="icon" alt="Hours Generated Icon">
+                <div class="number">320+</div>
+                <div class="label">Hours Videos</div>
+            </div>
+            
+            <div class="stat-item">
+                <img src="call-8602325.png" class="icon" alt="Tasks Completed Icon">
+                <div class="number">94k+</div>
+                <div class="label">Commments Analyzed</div>
+            </div>
+            
+            <div class="stat-item">
+                <img src="call-8602325.png" class="icon" alt="Worldwide Users Icon">
+                <div class="number">8k+</div>
+                <div class="label">Worldwide Users</div>
+            </div>
+            
+            <div class="stat-item">
+                <img src="call-8602325.png" class="icon" alt="Projects Completed Icon">
+                <div class="number">5k+</div>
+                <div class="label">Videos Analyzed</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end -->
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+      <span style="padding: 0px 15px 0px 15px; background-color: #EBF6EF; border-radius: 50px;">
+        <p style="color: #37AA67; font-size: 14px; font-weight:530;">TEAM MEMBERS</p>
+      </span> 
+    </div>
+    <!-- project contributers -->
+     <h1 style="color: black; text-align: center;">Our Project Contributers</h1>
+     <span style="display: flex; justify-content: center; align-items: center; margin-top: 70px;" >
+        <span >
+            <img src="dp-removebg-preview.png" width="300px" height="340px" style="border-radius: 10px;">
+            <h3 style="color: black;text-align: center;">Muhammad Ramzan</h3>
+            <p style="color: #6E6E6E;text-align: center;">App Developer</p>
+        </span>
+        <span style="margin-left: 30px;">
+            <img src="photo-1585728748176-455ac5eed962-removebg-preview.png"  width="300px" height="340px" style="border-radius: 10px;">
+            <h3 style="color: black; text-align: center;">Hajira Ashraf</h3>
+            <p style="color:#6E6E6E;text-align: center;">Front End Developer</p>
+        </span>
+        <span style="margin-left: 30px;">
+            <img src="ali-removebg-preview (1).png"  width="300px" height="340px" style="border-radius: 10px;">
+            <h3 style="color: black;text-align: center;">Ali Husnain</h3>
+            <p style="color:#6E6E6E;text-align: center;">Web Developer</p>
+        </span>
+        <span style="margin-left: 30px;">
+            <img src="Abud_Rafiq-removebg-preview.png"  width="300px" height="340px" style="border-radius: 10px;">
+            <h3 style="color: black;text-align: center;">Mr.Abid Rafiq</h3>
+            <p style="color:#6E6E6E;text-align: center;">AI Developer & Researcher</p>
+        </span>
+     </span>
+
+     <!-- end -->
+    <div id="projectInfo" style=" display: flex;  gap: 0px;  width: 90%;  border-radius: 20px;  margin: 80px 80px; overflow: hidden; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div style="width:800px; height: 250px; background-color:#37AA67;padding: 50px 50px 0 50px; color: white;">
+            <span style="background-color: #F5F5F5; border-radius: 50px; padding: 0px;"><img src="science-lab-7445779.jpg" style="height: 70px;width: 70px; border-radius: 50%;"></span>
+            <h4>Our Research</h4>
+            <p style="color: white; text-align: justify;">The system works based on Machine Learning algorithms (SVM) to detect hate speech in YouTube videos by utilizing comments and categorizing them into hate and non-hate.</p>
+        </div>
+    
+        <div style="width: 800px; height: 250px; background-color:#1A4EA4; padding: 50px 50px 0 50px; color: white;">
+            
+            <span style="background-color: #F5F5F5; border-radius: 50px; padding: 0px;"><img src="science-lab-7445779.jpg" style="height: 70px;width: 70px; border-radius: 50%;"></span>
+            <h4>Our Research</h4>
+            <p style="color: white; text-align: justify;">The system works based on Machine Learning algorithms (SVM) to detect hate speech in YouTube videos by utilizing comments and categorizing them into hate and non-hate.</p>
+        </div>
+        <div style="width: 800px; height: 250px; background-color:#FFFFFF;padding: 50px 50px 0 50px;">
+            
+            <span style="background-color: #F5F5F5; border-radius: 50px; padding: 0px"><img src="call-8602325.png" style="height: 70px;width: 70px; border-radius: 50%;"></span>
+            
+            <h4 style="color: black;">24/7 Support Assistant</h4>
+            <p style="color: #717171;text-align: justify;">The system works based on Machine Learning algorithms (SVM) to detect hate speech in YouTube videos by utilizing comments and categorizing them into hate and non-hate.</p>
+        </div>
+    </div>
+
+    <!-- footer section -->
+   
+                        <footer class="footer">
+                            <div class="footer-container">
+                                <div class="footer-section">
+                                    <h3  style="color: white;">About Company</h3>
+                                    <p style="color: #fff; line-height: 1.6;">
+                                        We are dedicated to detecting and preventing religious-based hate speech using cutting-edge AI technology, making online spaces safer for everyone.
+                                    </p>
+                                </div>
+                                
+                               
+                                
+                                <div class="footer-section">
+                                    <h3  style="color: white;">Our Services</h3>
+                                    <ul class="footer-links">
+                                        <li><a href="text analysis.html">Text Analysis</a></li>
+                                        <li><a href="social media monitor.html">Social Media Monitoring</a></li>
+                                        <li><a href="custom solution.html">Custom Solutions</a></li>
+                                        <!--<li><a href="api-integration.html">API Integration</a></li>-->
+                                    </ul>
+                                </div>
+                                
+                                <div class="footer-section">
+                                    <h3 style="color: white;" >Contact Us</h3>
+                                    <div class="contact-info">
+                                        <p style="color: white;"><i class="fa fa-map-marker"></i> 123 AI Street, Tech City</p>
+                                        <p  style="color: white;"><i class="fa fa-phone"></i> +1 234 567 8900</p>
+                                        <p  style="color: white;"><i class="fa fa-envelope"></i> info@hatespeechdetection.com</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="footer-bottom">
+                                <p style="color: white;">&copy; 2023 Hate Speech Detection System. All rights reserved.</p>
+                            </div>
+                                </footer>
