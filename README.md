@@ -23,7 +23,7 @@ The trained model is available on Hugging Face:
 | Name | Role | University / Department |
 |------|------|--------------------------|
 | Muhammad Ramzan | Project Leader & Full Stack Developer / Model Trainer / Researcher | University of Sargodha - BS Software Engineering |
-| [Hajira Ashraf] | Frontend Developer / Researcher / UI&UX /Project Presentator| University of Sargodha - BS Software Engineering |
+| [Hajira Ashraf] | Frontend Developer / Researcher / UI&UX | University of Sargodha - BS Software Engineering |
 | [Muhammad Ali Husnain] | Frontend Developer / Dataset Collecter / Preprocessing / Researcher | University of Sargodha - BS Software Engineering |
 
 ---
