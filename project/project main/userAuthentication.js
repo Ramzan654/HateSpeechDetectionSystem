@@ -10,7 +10,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBZbpaUl8r0NTvPWMDV71S3haqxGAOUMHk",
+  apiKey: "paste your actual firbase key here",
   authDomain: "hatespeechdetector-52f1c.firebaseapp.com",
   projectId: "hatespeechdetector-52f1c",
   storageBucket: "hatespeechdetector-52f1c.firebasestorage.app",
@@ -30,4 +30,5 @@ export {
   signOut,
   onAuthStateChanged,
   updateProfile
+
 };
