@@ -27,7 +27,7 @@ model = XLMRobertaForSequenceClassification.from_pretrained("xlm-model")
 # Initialize YouTube API client
 api_service_name = "youtube"
 api_version = "v3"
-DEVELOPER_KEY = "AIzaSyBED2f_e0YJs_YzpmwrNbeKnFBzF1CN838" # Replace with your actual YouTube Data API key
+DEVELOPER_KEY = "" # Replace with your actual YouTube Data API key
 youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=DEVELOPER_KEY)
 
 # Progress and results tracker
@@ -259,3 +259,4 @@ if __name__ == '__main__':
     print("Model loaded successfully")
     # For local development, set host to '0.0.0.0' to be accessible from other devices on the network
     app.run(debug=True, host='0.0.0.0', port=5000)
+
